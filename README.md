@@ -6,4 +6,4 @@ Follow the steps to customize as per your need:
 1. Change the default group in `build.gradle`.
 2. Update checkstyle rules under `/checkstyle/oracle.xml`.
 3. Under `/gradle/publishing.gradle` file change the artifact id to projectName-api and change the Maven URL to your nexus.
-4. Rename the package `myapp.api`.
+4. Rename the package `src/myapp/api`.
