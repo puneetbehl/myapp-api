@@ -1,0 +1,11 @@
+apply plugin: 'checkstyle'
+
+checkstyle {
+    toolVersion = 8.2
+    configFile = new File(project.rootDir, 'checkstyle/oracle.xml')
+    ignoreFailures = false
+    maxErrors = 0
+    maxWarnings = 0
+}
+
+checkstyleTest.enabled = false

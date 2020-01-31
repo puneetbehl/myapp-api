@@ -1,0 +1,38 @@
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allJava
+    archiveClassifier = 'sources'
+}
+
+task javadocJar(type: Jar) {
+    from javadoc
+    archiveClassifier = 'javadoc'
+}
+
+publishing {
+    repositories {
+        maven {
+            credentials {
+                username = System.getenv('NEXUS_USERNAME') ?: project.hasProperty('nexusUsername') ? project.nexusUsername : ''
+                password = System.getenv('NEXUS_PASSWORD') ?: project.hasProperty('nexusPassword') ? project.nexusPassword : ''
+            }
+            if (version.endsWith('SNAPSHOT')) {
+                url = 'https://nexus.myapp.io/repository/maven-snapshots/'
+            } else {
+                url = 'https://nexus.myapp.io/repository/maven-releases/'
+            }
+        }
+    }
+    publications {
+        maven(MavenPublication) {
+            groupId = group
+            artifactId = "myapp.api"
+            version = version
+
+            artifact sourcesJar
+            artifact javadocJar
+            from components.java
+        }
+    }
+}
+
+build.dependsOn('javadoc')
