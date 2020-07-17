@@ -7,3 +7,10 @@ updates:
     time: "11:00"
   open-pull-requests-limit: 10
   target-branch: master
+- package-ecosystem: gradle
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "11:00"
+  open-pull-requests-limit: 10
+  target-branch: micronaut2
